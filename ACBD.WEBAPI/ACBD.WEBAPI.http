@@ -1,0 +1,6 @@
+@ACBD.WEBAPI_HostAddress = http://localhost:5285
+
+GET {{ACBD.WEBAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

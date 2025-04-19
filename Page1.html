@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Department Info</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery -->
+</head>
+<body>
+    <input type="number" id="id1" placeholder="Enter Department ID" />
+    <input type="button" onclick="loaddata()" value="Load Department" />
+    <div id="div1"></div>
+
+    <script>
+        function loaddata() {
+            var d = document.getElementById("id1").value;
+            var d2 = document.getElementById("div1");
+
+            $.ajax({
+                url: "http://localhost:5285/api/Department/" + d,
+                method: "GET",
+                success: function (result) {
+                    var html = `<strong>ID:</strong> ${result.id}<br/>`;
+                    html += `<strong>Name:</strong> ${result.name}<br/>`;
+                    html += `<strong>Employees:</strong><ul>`;
+                    result.names.forEach(empName => {
+                        html += `<li>${empName}</li>`;
+                    });
+                    html += `</ul>`;
+                    d2.innerHTML = html;
+                },
+                error: function () {
+                    d2.innerHTML = "❌ Department not found or server error.";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
