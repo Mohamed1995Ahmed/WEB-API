@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models.Data;
@@ -19,6 +20,7 @@ namespace ACBD.WEBAPI.Controllers
         }
         [HttpGet]
         [HttpGet]
+        [Authorize]
         public IActionResult GetAll()
         {
             var depts = context.Departments
